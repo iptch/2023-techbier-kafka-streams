@@ -30,7 +30,11 @@ public class KafkaStreamsFilter {
         //implement a filter which only sends payments over 500.- to a sink topic
 
         KStream<String, Payment> stream = streamsBuilder.stream(sourceTopic);
-        //TODO...
+
+        stream
+            //TODO...
+            .peek((key, payment) -> LOGGER.info("Message: key={}, value={}", key, payment))
+            .to(sinkTopic);
 
         LOGGER.info(String.valueOf(streamsBuilder.build().describe()));
     }
