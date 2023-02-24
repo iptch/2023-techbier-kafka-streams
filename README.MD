@@ -29,6 +29,9 @@ Es gibt 2 Umgebuingen welche konfigurierte werden können:
    
    In Klasse `ch.ipt.kafka.producer.PaymentProducer` & `ch.ipt.kafka.producer.AccountProducer` die `@Configuration` Annotation aktivieren.
 
+4. Maven `compile` ausführen um die Klassen aus den avro Schemas zu generieren.
+5. In IntelliJ den Ordner mit den generierten Klassen als `Generated Sources Root` markieren
+
 
 ## Lokaler Redpanda Cluster
 
@@ -66,14 +69,23 @@ docker-compose rm
 
 ## App starten
 
+Topics `accounts`& `transactions` erstellen (2 partitions, delete after 1w). Dies ist nur einmal nötig und wird von den Coaches gemacht.
+
 Die Klasse `ch.ipt.kafka.TechBierKafkaStreamsApplication` starten (Vorher muss korrektes Intellij Profil gesetzt werden)
 
 Du solltest jetzt in den Topics `accounts`& `transactions` messages sehen. Du kannst jetzt auf diese reagieren.
+
+Auf dem M1 MacBook hatte ich einen LinkerError ab Aufgabe 4 wo die State Stores ins Spiel kommen.
+Grund war, dass ich auf JDK17 eingestellt hatte. Mit OpenJDK11 ging es dann.
 
 ## App erweitern
 
 Aktivere die jeweiligen Klassen in `exerciseX.X` dort kannst du einzelne Streaming Applikationen erstellen.
 
+Die wichtigste Dokumentationsseite ist die DSL Doku von Confluent: https://docs.confluent.io/platform/current/streams/developer-guide/dsl-api.html
+Für mehr Details ist auch die Java API manchmal nützlich: https://docs.confluent.io/platform/current/streams/javadocs/javadoc/org/apache/kafka/streams/kstream/KStream.html
 
+## Streams Topologie visualisieren
 
-
+Die Streams DSL generiert und loggt zur Laufzeit eine Topologie von Processor Nodes.
+Diese kann mit folgendem Tool leicht visualisiert werden: https://zz85.github.io/kafka-streams-viz/

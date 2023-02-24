@@ -35,7 +35,7 @@ public class KafkaStreamsJoinSolution {
         String sinkTopic = EXERCISE_7_TOPIC + initial;
 
         // filter all Payments for the customers with last name "Fischer"
-        // Hint look up fk-join
+        // Hint look up fk-join (which only works between two KTable's)
 
         KStream<String, Payment> transactionStream = streamsBuilder.stream(sourceTransactions);
         KStream<String, Account> accountStream = streamsBuilder.stream(sourceAccounts);

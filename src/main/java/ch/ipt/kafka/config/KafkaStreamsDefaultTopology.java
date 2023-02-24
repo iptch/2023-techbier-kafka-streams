@@ -91,13 +91,11 @@ public class KafkaStreamsDefaultTopology {
     }
 
     @Bean
-
     public NewTopic createTopic3Unknown() {
         return createTopic(EXERCISE_3_TOPIC_UNKNOWN + initial);
     }
 
     @Bean
-
     public NewTopic createTopic4() {
         return createTopic(EXERCISE_4_TOPIC + initial);
     }
@@ -124,7 +122,7 @@ public class KafkaStreamsDefaultTopology {
 
     private NewTopic createTopic(String topicName) {
         return TopicBuilder.name(topicName)
-                .partitions(6)
+                .partitions(2)
                 .replicas(replicas)
                 .build();
     }

@@ -2,7 +2,7 @@ spring:
   kafka:
 
     streams:
-      application-id: techbier-2022-${INITIALS}
+      application-id: hands-on-erfa-2023-${INITIALS}
       state-dir: ${user.dir}/target/state
 
       properties:
